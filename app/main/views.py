@@ -2,6 +2,7 @@ from flask_login import login_required
 from flask import render_template,request,redirect,url_f
 from ..models import Reviews, User
 from .. import db,photos
+from ..email import mail_message
 
 @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
 @login_required
