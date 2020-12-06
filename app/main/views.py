@@ -1,8 +1,22 @@
 from flask_login import login_required, current_user
-from flask import render_template,request,redirect,url_f
-from ..models import Reviews, User
+from flask import render_template,request,redirect,url_for, abort
+from ..models import Pitches,Role,User,Comments
 from .. import db,photos
+from . import main
 from ..email import mail_message
+from .forms import PitchForm,CommentForm,UpdateProfile
+
+
+@main.route('/')
+def index():
+    '''
+    Index page
+    return
+    '''
+    message= "Welcome to Pitch Application!!"
+    title= 'Pitch-app!'
+    return render_template('index.html', message=message,title=title)
+
 
 @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
 @login_required
